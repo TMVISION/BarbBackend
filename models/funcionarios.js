@@ -12,6 +12,7 @@ const Funcionario = new Schema ({
     email       : {type:String, required: true},
     telefone    : {type:String, required: true},
     funcao      : {type:String, required: true},
+    unidade     : {type:String, required: true},
     descricao   : {type:String}
 
 
