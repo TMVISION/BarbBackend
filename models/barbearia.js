@@ -8,8 +8,8 @@ var Schema = mongoose.Schema;
 const Barbearias = new Schema ({
 
     unidade     : {type:String, required: true},
-    localização : {type:String, required: true},
-    
+    localizacao : {type:String, required: true},
+    imagem      : {type:String, required: true}
     
 })
 

@@ -104,3 +104,14 @@ exports.disponivelReserva = async (req, res) => {
     }
   };
 */
+
+exports.verificaDisponibilidade = async (req,res)=>{
+  try {
+    res.status(201).json(await reserva.reservaModel.find({
+      $gte: new Date(req.body.dia,req.body.hora),
+      $lt: new Date(req.body.dia,req.body.hora)
+    }))
+  } catch (error) {
+    
+  }
+}

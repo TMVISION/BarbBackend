@@ -1,4 +1,4 @@
-const { BarbeariaModel } = require('../models/barbearias.js');
+const { BarbeariaModel } = require('../models/barbearia.js');
 
 exports.getBarbearia = async(req, res) => {
     try {

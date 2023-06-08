@@ -8,7 +8,7 @@ var cors = require('cors');
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
 var usersRouter = require('./routes/users');
-var salasRouter = require('./routes/salas');
+var unidadesRouter = require('./routes/barbearia');
 var clientesRouter = require('./routes/clientes');
 var funcionariosRouter = require('./routes/funcionarios');
 var reservasRouter = require('./routes/reservas_routes');
@@ -19,7 +19,7 @@ require('dotenv').config({path: __dirname + '/.env' })
 
 
 // CORS
-app.use(cors({origin:'http://localhost:3000'}));
+app.use(cors({origin:'http://localhost:19006'}));
 app.options('*', cors());
 
 // view engine setup
@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/ass', apiRouter);
 app.use('/users', usersRouter);
-app.use('/api/salas', salasRouter);
+app.use('/api/unidades', unidadesRouter);
 app.use('/api/clientes', clientesRouter);
 app.use('/api/funcionarios', funcionariosRouter);
 app.use('/api/reservas', reservasRouter);

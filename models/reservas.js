@@ -15,6 +15,7 @@ var reserva = new Schema ({
     fim         : { type:String, required: true},    
     valortotal  : { type:Number, required: true},    
     observacao  : { type:String, required: true},
+    unidade     : { type:String, required: true},
     status      : { type:String, required: true}    
 })
 
