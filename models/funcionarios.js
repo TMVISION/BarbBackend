@@ -13,13 +13,14 @@ const Funcionario = new Schema ({
     telefone    : {type:String, required: true},
     funcao      : {type:String, required: true},
     unidade     : {type:String, required: true},
+    imagem      : {type:String},
     descricao   : {type:String},
     face        : {type:String},
     twitter     : {type:String},
     instagram   : {type:String}
 })
 
-const FuncionarioModel = mongoose.model('FuncionarioModel', Funcionario);
+const FuncionarioModel = mongoose.model('funcionarios', Funcionario);
 
 
 module.exports = {FuncionarioModel}

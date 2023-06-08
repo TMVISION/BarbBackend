@@ -17,6 +17,14 @@ exports.getFuncionarioId = async (req, res) => {
   }
 };
 
+exports.getBarbeiro = async (req, res) => {
+  try {
+    res.status(200).json(await FuncionarioModel.find({funcao: "2"}));
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 exports.createFuncionario = async (req, res) => {
   try {
     res.status(201).json(await FuncionarioModel.create(req.body));
