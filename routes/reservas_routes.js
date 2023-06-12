@@ -3,7 +3,7 @@ var router = express.Router();
 var reservaController = require('../controllers/reservas');
 
 //consultar reservas teste
-router.get('/', reservaController.getReservas);
+router.get('/', reservaController.verificaHora);
 //consultar reservas em um perido
 router.get('/consulta/', reservaController.consultaDatasReservas);
 // criar a reserva
