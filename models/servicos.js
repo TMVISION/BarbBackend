@@ -10,6 +10,7 @@ const Servico = new Schema ({
     nome        : {type:String, required: true},
     valor       : {type:Number, required: true},
     imagem      : {type:String, required: true},
+    duracao     : {type:String, required: true},
     descricao   : {type:String, required: true}
 })
 

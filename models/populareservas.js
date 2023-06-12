@@ -36,7 +36,7 @@ async function generateRandomData() {
 
     for (let i = 0; i < 5; i++) {
       const randomHour = generateRandomTime(9, 21);
-      const startTime = `${randomHour}:00`;
+      const startTime = `${randomHour}`;
 
       const document = {
         numero: faker.number.int(),

@@ -20,7 +20,7 @@ require('dotenv').config({path: __dirname + '/.env' })
 
 
 // CORS
-app.use(cors({origin:'http://localhost:19006'}));
+app.use(cors({origin:'http://localhost:3000'}));
 app.options('*', cors());
 
 // view engine setup
