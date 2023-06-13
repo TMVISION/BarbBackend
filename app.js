@@ -13,7 +13,7 @@ var clientesRouter = require('./routes/clientes');
 var funcionariosRouter = require('./routes/funcionarios');
 var servicosRouter = require('./routes/servicos');
 var reservasRouter = require('./routes/reservas_routes');
-
+var galeriaRouter = require('./routes/galeria');
 var app = express();
 
 require('dotenv').config({path: __dirname + '/.env' })
@@ -41,7 +41,7 @@ app.use('/api/clientes', clientesRouter);
 app.use('/api/funcionarios', funcionariosRouter);
 app.use('/api/reservas', reservasRouter);
 app.use('/api/servicos', servicosRouter);
-
+app.use('/api/galeria', galeriaRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
