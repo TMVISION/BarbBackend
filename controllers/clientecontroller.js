@@ -30,7 +30,14 @@ exports.getClienteByCPF = async (req, res) => {
 
 exports.createCliente = async (req, res) => {
     try {
-      res.status(201).json(await ClienteModel.create(req.body));
+
+      const cliente = {
+        nome: req.body.nome,
+        email: req.body.email,
+        tel: req.body.telefone,
+      }
+
+      res.status(201).json(await ClienteModel.create(cliente));
     } catch (error) {
       res.status(400).json({ message: error.message });
     }

@@ -8,8 +8,6 @@ var Schema = mongoose.Schema;
 const Clientes = new Schema ({
 
     nome        : {type:String, required: true},
-    cpf         : {type:String, required: true},
-    cep         : {type:String, required: true},
     email       : {type:String, required: true},
     tel         : {type:String, required: true}
     
