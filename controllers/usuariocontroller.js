@@ -5,6 +5,7 @@ const secretKey = 'segredo';
 
 exports.CreateUser = async (req, res) => {
     try {
+        
       const { email, nome, senha, role } = req.body;
          nsessao='0';
       const payload = {
@@ -20,7 +21,7 @@ exports.CreateUser = async (req, res) => {
   
       await newUser.save();
   
-      res.status(201).json(newUser);
+      res.status(201).json(newUser._id);
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
@@ -37,7 +38,7 @@ exports.ValidaUser = async (req, res) => {
             if (err) {
               return res.status(401).json({ message: 'Invalid token' });
             } else {               
-                    res.status(201).send("Validado1");
+                    res.status(201).send(UserBd._id);
                 
             }
           });    

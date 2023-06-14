@@ -3,13 +3,30 @@ const reserva = require('../models/reservas')
 // apenas para testes
 exports.getReservas = async(req, res) => {
   try {
-      const reservas = await reserva.reservaModel.find();
+      const reservas = await reserva.ReservaModel.find();
       res.json(reservas)
   }catch(error) {
       res.status(500).json({ message: error.message });
 
   }
 }
+
+// apenas para testes
+exports.getReservasByClientId = async(req, res) => {
+  try {
+      const reservas = await reserva.ReservaModel.find({cliente: `${req.params.id}`});
+      res.status(200).json(reservas)
+  }catch(error) {
+      res.status(500).json({ message: error.message });
+
+  }
+}
+
+
+
+
+
+
 
 exports.consultaDatasReservas = async (req, res) => {   
   const { inicio, fim } = req.query;
@@ -29,7 +46,7 @@ exports.consultaDatasReservas = async (req, res) => {
       res.status(400).json({ message: 'A data final deve ser posterior à data inicial' });
     } else {
       // Executa a consulta no banco de dados
-      const response = await reserva.reservaModel.find({ data: { $gte: inicioData, $lte: fimData } }, (err, resultados) => {
+      const response = await reserva.ReservaModel.find({ data: { $gte: inicioData, $lte: fimData } }, (err, resultados) => {
         if (err) {
           console.error(err);
         } else {
@@ -51,7 +68,7 @@ exports.consultaSalasReservas = async (req, res) => {
   } else {
     
       // Executa a consulta no banco de dados
-      const response = await reserva.reservaModel.find({ sala: sala_reserva }, (err, resultados) => {
+      const response = await reserva.ReservaModel.find({ sala: sala_reserva }, (err, resultados) => {
         if (err) {
           console.error(err);
         } else {

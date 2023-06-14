@@ -3,9 +3,11 @@ var router = express.Router();
 var reservaController = require('../controllers/reservas');
 
 //consultar reservas teste
-router.get('/', reservaController.verificaHora);
+router.get('/', reservaController.getReservas);
 //consultar reservas em um perido
 router.get('/consulta/', reservaController.consultaDatasReservas);
+//consultar reservas teste
+router.get('/cliente/:id', reservaController.getReservasByClientId);
 // criar a reserva
 router.post('/', reservaController.createReserva);
 // alterar sala ou periodo da reserva
@@ -14,6 +16,8 @@ router.put('/:id', reservaController.updateReserva);
 //router.get('/disponivel/:id', reservaController.disponivelReserva);
 // cancelar a reserva
 router.put('/cancelar/:id', reservaController.cancelaReserva);
+
+router.get('/horas', reservaController.verificaHora);
 
 
 module.exports = router;

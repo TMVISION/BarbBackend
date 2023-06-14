@@ -32,6 +32,7 @@ exports.createCliente = async (req, res) => {
     try {
 
       const cliente = {
+        _id: req.body._id,
         nome: req.body.nome,
         email: req.body.email,
         tel: req.body.telefone,
