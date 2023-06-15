@@ -17,7 +17,7 @@ router.put('/:id', reservaController.updateReserva);
 // cancelar a reserva
 router.put('/cancelar/:id', reservaController.cancelaReserva);
 
-router.get('/horas', reservaController.verificaHora);
+router.get('/horas/:barbeiro/:data', reservaController.verificaHora);
 
 
 module.exports = router;

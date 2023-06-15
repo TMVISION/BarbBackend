@@ -127,6 +127,10 @@ exports.disponivelReserva = async (req, res) => {
 //const result = await reserva.ReservaModel.find({barbeiro: "Maddison",horas: `${horario}`, unidade:"debitis", data: new Date('2023-06-12T06:49:10.786+00:00')})
 
 exports.verificaHora = async (req,res)=>{
+
+  const barbeiro = req.params.barbeiro
+  const data = req.params.data
+
   try {
     
     const horas = [];
@@ -137,8 +141,15 @@ exports.verificaHora = async (req,res)=>{
         j == 0 ? m = "00" : m = j;
 
         let horario = `${i}:${m}`
-        const result = await reserva.ReservaModel.find({horas: `${horario}`})
-        result.length > 0 ?  "" : horas.push(horario);
+
+        if(horario == '21:30'){
+          break
+        }else{
+            //const result = await reserva.ReservaModel.find({horas: `${horario}`})
+            const result = await reserva.ReservaModel.find({barbeiro: barbeiro,horas: `${horario}`, data: new Date(data)})
+            result.length > 0 ?  "" : horas.push(horario);
+        }
+      
       
       }
     }
