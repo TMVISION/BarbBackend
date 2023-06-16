@@ -46,7 +46,16 @@ exports.createCliente = async (req, res) => {
 
   exports.updateCliente = async (req, res) => {
     try {
-      res.status(201).json(await ClienteModel.findByIdAndUpdate(req.params.id, req.body))
+
+      const cliente = {
+        nome: req.body.nome,
+        email: req.body.email,
+        tel: req.body.tel
+      }
+
+
+      res.status(201).json(await ClienteModel.findByIdAndUpdate(req.params.id, cliente
+        ))
     } catch (error) {
       res.status(400).json({ message: error.message });
     }

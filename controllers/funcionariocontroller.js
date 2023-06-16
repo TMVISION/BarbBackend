@@ -38,6 +38,7 @@ exports.getBarbeiroByUnidade = async (req, res) => {
 
 exports.createFuncionario = async (req, res) => {
   try {
+    
     res.status(201).json(await FuncionarioModel.create(req.body));
   } catch (error) {
     res.status(400).json({ message: error.message });

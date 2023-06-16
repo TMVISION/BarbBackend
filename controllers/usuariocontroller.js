@@ -42,7 +42,42 @@ exports.ValidaUser = async (req, res) => {
                 
             }
           });    
-    }
-    
-    
+    };
+   
 }
+
+exports.UpdateUser = async (req, res) => {
+    try {
+      
+      const userId = req.params.id; // Assuming you pass the user ID in the request parameters
+  
+      console.log(userId)
+      // Find the user by ID
+      const user = await Users.UsuarioModel.findByIdAndUpdate(userId,req.body);
+        console.log(user)
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+  
+      
+      res.status(200).json({ message: 'User updated successfully' });
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  };
+
+  exports.deleteUser = async (req, res) => {
+    try {
+      res.status(201).json(await Users.UsuarioModel.findByIdAndDelete(req.params.id))
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
+  exports.getAllUsers = async (req, res) => {
+    try {
+      res.status(201).json(await Users.UsuarioModel.find())
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };

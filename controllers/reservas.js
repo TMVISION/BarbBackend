@@ -14,7 +14,7 @@ exports.getReservas = async(req, res) => {
 // apenas para testes
 exports.getReservasByClientId = async(req, res) => {
   try {
-      const reservas = await reserva.ReservaModel.find({cliente: `${req.params.id}`});
+      const reservas = await reserva.ReservaModel.find({cliente: `${req.params.id}`, status:"R"});
       res.status(200).json(reservas)
   }catch(error) {
       res.status(500).json({ message: error.message });
@@ -146,7 +146,7 @@ exports.verificaHora = async (req,res)=>{
           break
         }else{
             //const result = await reserva.ReservaModel.find({horas: `${horario}`})
-            const result = await reserva.ReservaModel.find({barbeiro: barbeiro,horas: `${horario}`, data: new Date(data)})
+            const result = await reserva.ReservaModel.find({barbeiro: barbeiro,horas: `${horario}`, data: new Date(data), status: "R"})
             result.length > 0 ?  "" : horas.push(horario);
         }
       
