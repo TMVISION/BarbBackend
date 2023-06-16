@@ -4,6 +4,8 @@ var reservaController = require('../controllers/reservas');
 
 //consultar reservas teste
 router.get('/', reservaController.getReservas);
+router.get('/:id', reservaController.getOneReserva);
+
 //consultar reservas em um perido
 router.get('/consulta/', reservaController.consultaDatasReservas);
 //consultar reservas teste
