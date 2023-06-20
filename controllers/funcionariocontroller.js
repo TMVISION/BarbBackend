@@ -19,7 +19,7 @@ exports.getFuncionarioId = async (req, res) => {
 
 exports.getBarbeiro = async (req, res) => {
   try {
-    res.status(200).json(await FuncionarioModel.find({funcao: "2"}));
+    res.status(200).json(await FuncionarioModel.find({funcao: "BARBEIRO"}));
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -30,7 +30,7 @@ exports.getBarbeiroByUnidade = async (req, res) => {
   const id = req.params.id
 
   try {
-    res.status(200).json(await FuncionarioModel.find({unidade: id, funcao: "2"}));
+    res.status(200).json(await FuncionarioModel.find({unidade: id, funcao: "BARBEIRO"}));
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
