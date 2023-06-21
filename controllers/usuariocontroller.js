@@ -1,6 +1,7 @@
 const Users = require('../models/usuario.js');
 const jwt = require('jsonwebtoken');
 const secretKey = 'segredo';
+const { ClienteModel } = require('../models/clientes.js');
 
 
 exports.CreateUser = async (req, res) => {
@@ -8,6 +9,18 @@ exports.CreateUser = async (req, res) => {
         
       const { email, nome, senha, role } = req.body;
          nsessao='0';
+
+
+      const userEmail = await Users.UsuarioModel.findOne({email: email})
+      if(userEmail){
+        console.log("olha eu")
+        res.status(401).send("Email já utilizado, digite outro.")
+      }else{
+        const telefone = await ClienteModel.findOne({tel: req.body.telefone})
+      if(telefone){
+        res.status(401).send("Numero de telefone já utilizado, digite outro")
+      }else{
+      
       const payload = {
         email,
         nome,
@@ -22,9 +35,13 @@ exports.CreateUser = async (req, res) => {
       await newUser.save();
   
       res.status(201).json(newUser._id);
+    }
+    }
+
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
+    
   };
 exports.ValidaUser = async (req, res) => {
 
