@@ -69,7 +69,7 @@ exports.UpdateUser = async (req, res) => {
       const userId = req.params.id; // Assuming you pass the user ID in the request parameters
   
       console.log(userId)
-      // Find the user by ID
+      // Find the user by ID 
       const user = await Users.UsuarioModel.findByIdAndUpdate(userId,req.body);
         console.log(user)
       if (!user) {
