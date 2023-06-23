@@ -173,3 +173,12 @@ exports.verificaDisponibilidade = async (req,res)=>{
     
   }
 }
+
+exports.deleteReserva = async (req, res) => {
+  try {
+    res.status(201).json(await reserva.ReservaModel.findByIdAndDelete(req.params.id));
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

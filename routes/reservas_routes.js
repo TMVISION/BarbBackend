@@ -21,5 +21,6 @@ router.put('/cancelar/:id', reservaController.cancelaReserva);
 
 router.get('/horas/:barbeiro/:data', reservaController.verificaHora);
 
+router.delete('/deletar/:id', reservaController.deleteReserva);
 
 module.exports = router;
