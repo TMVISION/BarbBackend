@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 
+require('dotenv').config({path: __dirname + '/.env' })
+
+
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
 var usersRouter = require('./routes/users');
@@ -16,11 +19,10 @@ var reservasRouter = require('./routes/reservas_routes');
 var galeriaRouter = require('./routes/galeria');
 var app = express();
 
-require('dotenv').config({path: __dirname + '/.env' })
 
 
 // CORS
-app.use(cors({origin:'http://localhost:3000'}));
+app.use(cors({origin:'*'}));
 app.options('*', cors());
 
 // view engine setup
