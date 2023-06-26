@@ -6,11 +6,12 @@ var logger = require('morgan');
 var cors = require('cors');
 
 require('dotenv').config({path: __dirname + '/.env' })
+var app = express();
 
 // CORS
 app.use(cors({origin:'*'}));
 app.options('*', cors());
-
+''
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
 var usersRouter = require('./routes/users');
@@ -20,12 +21,12 @@ var funcionariosRouter = require('./routes/funcionarios');
 var servicosRouter = require('./routes/servicos');
 var reservasRouter = require('./routes/reservas_routes');
 var galeriaRouter = require('./routes/galeria');
-var app = express();
 
 
 
 
-// view engine setup
+
+// view engine setup'
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
