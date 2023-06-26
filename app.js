@@ -4,9 +4,18 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 require('dotenv').config({path: __dirname + '/.env' })
 var app = express();
+
+app.use(
+  '/api',
+  createProxyMiddleware({
+    target: 'http://barbertimeapi.vercel.app',
+    changeOrigin: true,
+  })
+);
 
 // CORS
 app.use(cors({origin:'*'}));
