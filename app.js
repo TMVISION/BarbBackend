@@ -7,6 +7,9 @@ var cors = require('cors');
 
 require('dotenv').config({path: __dirname + '/.env' })
 
+// CORS
+app.use(cors({origin:'*'}));
+app.options('*', cors());
 
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
@@ -21,9 +24,6 @@ var app = express();
 
 
 
-// CORS
-app.use(cors({origin:'*'}));
-app.options('*', cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
