@@ -17,7 +17,7 @@ app.options('*', cors());
 
 
 app.use(
-  '/api',
+  '/',
   createProxyMiddleware({
     target: 'http://barbertimeapi.vercel.app',
     changeOrigin: true,
