@@ -12,17 +12,8 @@ var app = express();
 
 
 // CORS
-app.use(cors({origin:'*'}));
-app.options('*', cors());
+app.use(cors());
 
-
-app.use(
-  '/',
-  createProxyMiddleware({
-    target: 'http://barbertimeapi.vercel.app',
-    changeOrigin: true,
-  })
-);
 
 
 var indexRouter = require('./routes/index');
