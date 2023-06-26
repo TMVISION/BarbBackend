@@ -11,7 +11,7 @@ var app = express();
 // CORS
 app.use(cors({origin:'*'}));
 app.options('*', cors());
-''
+
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
 var usersRouter = require('./routes/users');
