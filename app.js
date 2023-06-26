@@ -9,6 +9,13 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 require('dotenv').config({path: __dirname + '/.env' })
 var app = express();
 
+
+
+// CORS
+app.use(cors({origin:'*'}));
+app.options('*', cors());
+
+
 app.use(
   '/api',
   createProxyMiddleware({
@@ -17,9 +24,6 @@ app.use(
   })
 );
 
-// CORS
-app.use(cors({origin:'*'}));
-app.options('*', cors());
 
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
