@@ -63,6 +63,26 @@ exports.ValidaUser = async (req, res) => {
    
 }
 
+exports.ValidaUserDash = async (req, res) => {
+
+  const UserBd =  await Users.UsuarioModel.findOne({email: req.body.email,senha: req.body.senha, role: { $in: ["admin", "funcionario"] } });
+  if(!UserBd){
+      res.status(401).send("Credenciais invalidas")
+  }else{
+      const token = UserBd.token;
+
+      jwt.verify(token, secretKey, (err, decodedToken) => {
+          if (err) {
+            return res.status(401).json({ message: 'Invalid token' });
+          } else {               
+                  res.status(201).send(UserBd._id);
+              
+          }
+        });    
+  };
+ 
+}
+
 exports.UpdateUser = async (req, res) => {
     try {
       
