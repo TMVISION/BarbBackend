@@ -1,4 +1,5 @@
 const Users = require('../models/usuario.js');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const secretKey = 'segredo';
 const { ClienteModel } = require('../models/clientes.js');
@@ -20,11 +21,12 @@ exports.CreateUser = async (req, res) => {
       if(telefone){
         res.status(401).send("Numero de telefone já utilizado, digite outro")
       }else{
-      
+        const hashedPassword = await bcrypt.hash(senha, 10);
+
       const payload = {
         email,
         nome,
-        senha,
+        senha: hashedPassword,
         role,
         nsessao
       };
