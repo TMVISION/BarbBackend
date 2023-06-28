@@ -8,10 +8,12 @@ const { ClienteModel } = require('../models/clientes.js');
 exports.CreateUser = async (req, res) => {
     try {
         
-      const { email, nome, senha, role } = req.body;
+      var { email, nome, senha, role } = req.body;
          nsessao='0';
 
-      
+      email = email.toLowerCase();
+      console.log("AOBA")
+      console.log(email)
       const userEmail = await Users.UsuarioModel.findOne({email: email})
       if(userEmail){
         console.log("olha eu")
