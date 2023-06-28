@@ -52,7 +52,7 @@ exports.ValidaUser = async (req, res) => {
   const senha = req.body.senha
   const hashedPassword = await bcrypt.hash(senha, 10);
 
-    const UserBd =  await Users.UsuarioModel.findOne({email: req.body.email,senha: hashedPassword});
+    const UserBd =  await Users.UsuarioModel.findOne({email: req.body.email.toLowerCase(),senha: hashedPassword});
     if(!UserBd){
         res.status(401).send("Credenciais invalidas")
     }else{
@@ -73,7 +73,7 @@ exports.ValidaUser = async (req, res) => {
 exports.ValidaUserDash = async (req, res) => {
   const senha = req.body.senha
   const hashedPassword = await bcrypt.hash(senha, 10);
-  const UserBd =  await Users.UsuarioModel.findOne({email: req.body.email,senha: hashedPassword, role: { $in: ["admin", "funcionario"] } });
+  const UserBd =  await Users.UsuarioModel.findOne({email: req.body.email.toLowerCase(),senha: hashedPassword, role: { $in: ["admin", "funcionario"] } });
   if(!UserBd){
       res.status(401).send("Credenciais invalidas")
   }else{
