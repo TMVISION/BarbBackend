@@ -11,7 +11,7 @@ exports.CreateUser = async (req, res) => {
       const { email, nome, senha, role } = req.body;
          nsessao='0';
 
-      email = email.toLowerCase();
+      
       const userEmail = await Users.UsuarioModel.findOne({email: email})
       if(userEmail){
         console.log("olha eu")
