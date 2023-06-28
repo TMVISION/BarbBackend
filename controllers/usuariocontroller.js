@@ -50,12 +50,16 @@ exports.CreateUser = async (req, res) => {
 exports.ValidaUser = async (req, res) => {
 
   const senha = req.body.senha
-  const hashedPassword = await bcrypt.hash(senha, 10);
 
-    const UserBd =  await Users.UsuarioModel.findOne({email: req.body.email.toLowerCase(),senha: hashedPassword});
+    const UserBd =  await Users.UsuarioModel.findOne({email: req.body.email.toLowerCase()});
     if(!UserBd){
         res.status(401).send("Credenciais invalidas")
     }else{
+      
+    const passwordMatch = await bcrypt.compare(senha, UserBd.senha);
+    if (!passwordMatch) {
+      return res.status(401).send('Email ou senha inválidos.');
+    }
         const token = UserBd.token;
 
         jwt.verify(token, secretKey, (err, decodedToken) => {
@@ -72,11 +76,14 @@ exports.ValidaUser = async (req, res) => {
 
 exports.ValidaUserDash = async (req, res) => {
   const senha = req.body.senha
-  const hashedPassword = await bcrypt.hash(senha, 10);
-  const UserBd =  await Users.UsuarioModel.findOne({email: req.body.email.toLowerCase(),senha: hashedPassword, role: { $in: ["admin", "funcionario"] } });
+  const UserBd =  await Users.UsuarioModel.findOne({email: req.body.email.toLowerCase(), role: { $in: ["admin", "funcionario"] } });
   if(!UserBd){
       res.status(401).send("Credenciais invalidas")
   }else{
+    const passwordMatch = await bcrypt.compare(senha, UserBd.senha);
+    if (!passwordMatch) {
+      return res.status(401).send('Email ou senha inválidos.');
+    }
       const token = UserBd.token;
 
       jwt.verify(token, secretKey, (err, decodedToken) => {
